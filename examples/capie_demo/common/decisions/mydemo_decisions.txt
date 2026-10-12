@@ -1,0 +1,32 @@
+# CAPIE demo: free, repeatable decisions that open an editor. Opening raises the editor's
+# epoch, which CAPIE reads from the epoch carrier (CONTRACT.md section 4).
+mydemo_category = {
+	mydemo_open_motto = {
+		icon = generic_political_discourse
+		allowed = { always = yes }
+		visible = { is_ai = no }
+		available = { NOT = { has_country_flag = mydemo_motto_open } }
+		cost = 0
+		fire_only_once = no
+		days_re_enable = 0
+		ai_will_do = { base = 0 }
+		complete_effect = {
+			add_to_variable = { mydemo_motto_epoch = 1 }
+			set_country_flag = mydemo_motto_open
+		}
+	}
+	mydemo_open_name = {
+		icon = generic_political_discourse
+		allowed = { always = yes }
+		visible = { is_ai = no }
+		available = { NOT = { has_country_flag = mydemo_name_open } }
+		cost = 0
+		fire_only_once = no
+		days_re_enable = 0
+		ai_will_do = { base = 0 }
+		complete_effect = {
+			add_to_variable = { mydemo_name_epoch = 1 }
+			set_country_flag = mydemo_name_open
+		}
+	}
+}

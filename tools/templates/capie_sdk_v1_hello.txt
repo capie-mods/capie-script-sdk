@@ -1,0 +1,18 @@
+scripted_gui = {
+	capie_v1_ed__capie__hello = {
+		context_type = player_context
+		window_name = "capie_v1_ed__capie__hello"
+		visible = { capie_v1_mp_check_needed = yes }
+		ai_enabled = { always = no }
+		effects = {
+			capie_v1_ed__capie__hello_apply_click = {
+				# Any annotated command proves presence, also a sentinel (capie_cap is always sent).
+				capie_v1_note_presence = yes
+				add_to_variable = { capie_v1_hello_epoch = 1 }
+			}
+		}
+		triggers = {
+			capie_v1_ep__capie__hello_visible = { always = no }
+		}
+	}
+}

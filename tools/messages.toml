@@ -1,0 +1,131 @@
+# Player-facing texts of the CAPIE script SDK v1 (read by gen_sdk.py).
+# en is used for every language except Polish. Values must not contain double quotes.
+# [?ROOT.capie_v1_last_err_field] / _at are filled by capie_v1_report.
+
+[errors.10]
+en = "CAPIE is not loaded. Nothing was changed."
+pl = "CAPIE nie jest załadowane. Nic nie zmieniono."
+
+[errors.11]
+en = "CAPIE is too old for this mod. Nothing was changed."
+pl = "CAPIE jest za stare dla tego moda. Nic nie zmieniono."
+
+[errors.12]
+en = "The editor changed while you typed. Close it and open it again."
+pl = "Edytor zmienił się w trakcie pisania. Zamknij go i otwórz ponownie."
+
+[errors.13]
+en = "Too many CAPIE editors in this session. Nothing was changed."
+pl = "Za dużo edytorów CAPIE w tej sesji. Nic nie zmieniono."
+
+[errors.14]
+en = "This editor is built wrong (a mod author issue). Nothing was changed."
+pl = "Ten edytor jest źle zbudowany (błąd autora moda). Nic nie zmieniono."
+
+[errors.16]
+en = "Not every player runs the same CAPIE. Each player presses CAPIE check."
+pl = "Nie każdy gracz ma to samo CAPIE. Każdy gracz naciska Sprawdź CAPIE."
+
+[errors.20]
+en = "You may not change this."
+pl = "Nie możesz tego zmienić."
+
+[errors.21]
+en = "Field [?ROOT.capie_v1_last_err_field] is empty."
+pl = "Pole [?ROOT.capie_v1_last_err_field] jest puste."
+
+[errors.22]
+en = "Field [?ROOT.capie_v1_last_err_field] is longer than 32 characters."
+pl = "Pole [?ROOT.capie_v1_last_err_field] ma więcej niż 32 znaki."
+
+[errors.23]
+en = "Field [?ROOT.capie_v1_last_err_field]: invalid character at position [?ROOT.capie_v1_last_err_at]."
+pl = "Pole [?ROOT.capie_v1_last_err_field]: nieprawidłowy znak na pozycji [?ROOT.capie_v1_last_err_at]."
+
+[errors.24]
+en = "Field [?ROOT.capie_v1_last_err_field]: control character at position [?ROOT.capie_v1_last_err_at]."
+pl = "Pole [?ROOT.capie_v1_last_err_field]: znak sterujący na pozycji [?ROOT.capie_v1_last_err_at]."
+
+[errors.25]
+en = "Field [?ROOT.capie_v1_last_err_field]: the character at position [?ROOT.capie_v1_last_err_at] is reserved by the game."
+pl = "Pole [?ROOT.capie_v1_last_err_field]: znak na pozycji [?ROOT.capie_v1_last_err_at] jest zastrzeżony przez grę."
+
+[errors.26]
+en = "Field [?ROOT.capie_v1_last_err_field]: the character at position [?ROOT.capie_v1_last_err_at] is not supported."
+pl = "Pole [?ROOT.capie_v1_last_err_field]: znak na pozycji [?ROOT.capie_v1_last_err_at] nie jest obsługiwany."
+
+[errors.31]
+en = "Field [?ROOT.capie_v1_last_err_field] is too short."
+pl = "Pole [?ROOT.capie_v1_last_err_field] jest za krótkie."
+
+[errors.32]
+en = "Field [?ROOT.capie_v1_last_err_field] is too long."
+pl = "Pole [?ROOT.capie_v1_last_err_field] jest za długie."
+
+[errors.33]
+en = "Field [?ROOT.capie_v1_last_err_field] starts or ends with a space."
+pl = "Pole [?ROOT.capie_v1_last_err_field] zaczyna się lub kończy spacją."
+
+[errors.34]
+en = "Field [?ROOT.capie_v1_last_err_field] has two spaces in a row."
+pl = "Pole [?ROOT.capie_v1_last_err_field] ma dwie spacje z rzędu."
+
+[errors.35]
+en = "The editor sent damaged data. Nothing was changed."
+pl = "Edytor przesłał uszkodzone dane. Nic nie zmieniono."
+
+[ui.CAPIE_STATUS]
+en = "§OCAPIE missing§!"
+pl = "§OBrak CAPIE§!"
+
+[ui.CAPIE_API]
+en = "0"
+pl = "0"
+
+[ui.CAPIE_BUILD]
+en = "-"
+pl = "-"
+
+[ui.CAPIE_V1_ERR_0]
+en = ""
+pl = ""
+
+[ui.CAPIE_V1_ERR_UNKNOWN]
+en = "Unknown CAPIE error."
+pl = "Nieznany błąd CAPIE."
+
+[ui.CAPIE_V1_HELLO_TEXT]
+en = "CAPIE features are locked: [?global.capie_v1_mp_missing] player(s) have not confirmed the same CAPIE build."
+pl = "Funkcje CAPIE są zablokowane: graczy bez potwierdzonej tej samej wersji CAPIE: [?global.capie_v1_mp_missing]."
+
+[ui.CAPIE_V1_HELLO_BUTTON]
+en = "CAPIE check"
+pl = "Sprawdź CAPIE"
+
+[ui.CAPIE_V1_HELLO_TT]
+en = "Tells the other players which CAPIE build your game runs. Every player presses it once per session."
+pl = "Informuje innych graczy, jaką wersję CAPIE ma twoja gra. Każdy gracz naciska go raz na sesję."
+
+[ui.CAPIE_V1_RULE_EDIT_RIGHTS]
+en = "CAPIE: who may rename what"
+pl = "CAPIE: kto może zmieniać nazwy"
+
+[ui.CAPIE_V1_RULE_EDIT_RIGHTS_DESC]
+en = "Applies to every mod built on the CAPIE script SDK."
+pl = "Dotyczy każdego moda zbudowanego na skryptowym SDK CAPIE."
+
+[ui.CAPIE_V1_RULE_OWN]
+en = "Own country and subjects"
+pl = "Własny kraj i podmioty"
+
+[ui.CAPIE_V1_RULE_OWN_DESC]
+en = "A player renames their own country and its subjects."
+pl = "Gracz zmienia nazwy swojego kraju i jego podmiotów."
+
+[ui.CAPIE_V1_RULE_OPEN]
+en = "Any country"
+pl = "Dowolny kraj"
+
+[ui.CAPIE_V1_RULE_OPEN_DESC]
+en = "Every human player may rename any country. The host chooses this in the lobby."
+pl = "Każdy gracz może zmieniać nazwy dowolnego kraju. Wybiera to host w lobby."

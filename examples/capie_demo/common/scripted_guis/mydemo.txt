@@ -1,0 +1,33 @@
+# CAPIE demo: two grammar editors of the mod id "capiedemo" (CONTRACT.md section 3).
+# The carriers are hidden with *_visible triggers; CAPIE reads them by name.
+scripted_gui = {
+	capie_v1_ed__capiedemo__motto = {
+		context_type = player_context
+		window_name = "capie_v1_ed__capiedemo__motto"
+		visible = { is_ai = no has_country_flag = mydemo_motto_open }
+		ai_enabled = { always = no }
+		effects = {
+			capie_v1_ed__capiedemo__motto_apply_click = { mydemo_apply_motto = yes }
+			mydemo_motto_close_click = { mydemo_close_motto = yes }
+		}
+		triggers = {
+			capie_v1_pf__capiedemo__motto__1_visible = { always = no }
+			capie_v1_ep__capiedemo__motto_visible = { always = no }
+		}
+	}
+	capie_v1_ed__capiedemo__name = {
+		context_type = player_context
+		window_name = "capie_v1_ed__capiedemo__name"
+		visible = { is_ai = no has_country_flag = mydemo_name_open }
+		ai_enabled = { always = no }
+		effects = {
+			capie_v1_ed__capiedemo__name_apply_click = { mydemo_apply_name = yes }
+			mydemo_name_close_click = { mydemo_close_name = yes }
+		}
+		triggers = {
+			capie_v1_pf__capiedemo__name__1_visible = { always = no }
+			capie_v1_pf__capiedemo__name__2_visible = { always = no }
+			capie_v1_ep__capiedemo__name_visible = { always = no }
+		}
+	}
+}

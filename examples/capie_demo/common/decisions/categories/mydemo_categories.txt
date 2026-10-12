@@ -1,0 +1,6 @@
+# CAPIE demo: decision category that opens the two demo editors.
+mydemo_category = {
+	icon = generic_political_actions
+	allowed = { always = yes }
+	visible = { is_ai = no }
+}

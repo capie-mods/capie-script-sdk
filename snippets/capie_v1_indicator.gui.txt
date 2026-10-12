@@ -1,0 +1,19 @@
+# CAPIE "this mod needs CAPIE" indicator: paste into your own window in your own .gui file.
+# Text: the localisation key below. With CAPIE loaded it reads "CAPIE 1.1" (neutral); without it
+# the SDK fallback "CAPIE missing" is drawn in orange. Resolved whenever the text is drawn, so it is
+# right even after loading a save without CAPIE. A trigger cannot read it; use it only for display.
+instantTextboxType = {
+	name = "mymod_capie_status"
+	position = { x = 0 y = 0 }
+	font = "hoi_16mbs"
+	text = "MYMOD_CAPIE_LINE"
+	maxWidth = 160
+	maxHeight = 18
+	fixedsize = yes
+	pdx_tooltip = "MYMOD_CAPIE_TT"
+}
+
+# localisation/english/mymod_l_english.yml (UTF-8 with BOM):
+# l_english:
+#  MYMOD_CAPIE_LINE:0 "$CAPIE_STATUS$"
+#  MYMOD_CAPIE_TT:0 "My Mod types names through CAPIE. Without it the editors stay read-only."

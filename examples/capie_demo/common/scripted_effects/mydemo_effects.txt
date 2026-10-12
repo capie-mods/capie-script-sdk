@@ -1,0 +1,70 @@
+# CAPIE demo: Apply and Close effects of the two editors, built only from SDK effects.
+# Pattern for every Apply: begin (header, presence, epoch) -> permission -> load, trim and
+# validate each field -> store -> setter -> report -> close on success.
+
+# Motto: one field, kept in text slot 3 of the player's country and drawn with CAPIE_V1_TXT3.
+mydemo_apply_motto = {
+	set_temp_variable = { capie_open_epoch = mydemo_motto_epoch }
+	capie_v1_begin = yes
+	if = {
+		limit = { capie_v1_ok = yes NOT = { capie_v1_actor_ok = yes } }
+		set_temp_variable = { capie_err = 20 }
+	}
+	set_temp_variable = { capie_field = 1 }
+	capie_v1_field_load = yes
+	capie_v1_text_trim = yes
+	set_temp_variable = { capie_min_len = 2 }
+	set_temp_variable = { capie_max_len = 32 }
+	capie_v1_text_validate = yes
+	set_temp_variable = { capie_slot = 3 }
+	capie_v1_text_store = yes
+	capie_v1_report = yes
+	if = {
+		limit = { capie_v1_ok = yes }
+		mydemo_close_motto = yes
+	}
+}
+
+mydemo_close_motto = {
+	clr_country_flag = mydemo_motto_open
+	add_to_variable = { mydemo_motto_epoch = 1 }
+}
+
+# Country name and adjective: two fields into slots 1 and 2, then the RN1 cosmetic tag.
+# The permission check runs in the effect: the game does not repeat visible/enabled triggers.
+mydemo_apply_name = {
+	set_temp_variable = { capie_open_epoch = mydemo_name_epoch }
+	capie_v1_begin = yes
+	if = {
+		limit = {
+			capie_v1_ok = yes
+			NOT = { AND = { capie_v1_actor_ok = yes capie_v1_may_edit_country = yes } }
+		}
+		set_temp_variable = { capie_err = 20 }
+	}
+	set_temp_variable = { capie_min_len = 1 }
+	set_temp_variable = { capie_max_len = 32 }
+	set_temp_variable = { capie_field = 1 }
+	capie_v1_field_load = yes
+	capie_v1_text_trim = yes
+	capie_v1_text_validate = yes
+	set_temp_variable = { capie_slot = 1 }
+	capie_v1_text_store = yes
+	set_temp_variable = { capie_field = 2 }
+	capie_v1_field_load = yes
+	capie_v1_text_trim = yes
+	capie_v1_text_validate = yes
+	set_temp_variable = { capie_slot = 2 }
+	capie_v1_text_store = yes
+	capie_v1_set_country_name = yes
+	capie_v1_report = yes
+	if = {
+		limit = { capie_v1_ok = yes }
+		mydemo_close_name = yes
+	}
+}
+
+mydemo_close_name = {
+	clr_country_flag = mydemo_name_open
+	add_to_variable = { mydemo_name_epoch = 1 }
+}
