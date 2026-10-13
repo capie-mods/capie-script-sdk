@@ -34,6 +34,7 @@ explains why, and the steps of the move.
 5. Status line: switch `RN_COUNTRY_PLUGIN` from `$RN_PLUGIN_STATUS_EN/PL$` to `$CAPIE_STATUS$`.
    Keep CAPIE answering `RN_PLUGIN_STATUS*` for one more release so older mod versions still
    show the right text.
-6. Keep the `RN1|` cosmetic-tag protocol unchanged: saves contain it.
+6. Keep reading the `RN1|` cosmetic-tag protocol (CAPIE 1.0/1.1 saves contain it); new names are
+   written only as the country-name layer of API level 4 (CONTRACT.md section 13).
 7. Re-record the mutants of the legacy editor path against the grammar path; run the in-game
    checklist of the twentieth run on the new names.

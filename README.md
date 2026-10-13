@@ -28,7 +28,9 @@ modder documentation is in `sites/capie/docs/modders/`.
   buffer, trimmed and checked.
 - `capie_v1_text_store` / `_load` / `_equals_slot` / `_clear`: four text slots per country,
   drawn by the localisation keys `CAPIE_V1_TXT1` to `CAPIE_V1_TXT4`.
-- Setters through `meta_effect`: country name (RN1 cosmetic tag), state, character and party names.
+- Setters: country name and adjective as the country-name layer of API level 4 (country variables;
+  flag and colour stay; `capie_v1_clear_country_name` removes it), and through `meta_effect` state,
+  character and party names.
 - `capie_v1_actor_ok`, `capie_v1_may_edit_country` and the lobby rule `capie_v1_edit_rights`.
 - The CAPIE check window of the multiplayer handshake.
 - `CAPIE_STATUS`, `CAPIE_API`, `CAPIE_BUILD` fallbacks and every message, in all ten game

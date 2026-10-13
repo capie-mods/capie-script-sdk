@@ -20,7 +20,7 @@ What the SDK gives a mod:
   store into and load from four text slots per country, and scripted localisation that
   draws a slot (``CAPIE_V1_TXT<n>``).
 * Setters for the vanilla name effects through ``meta_effect`` (country name through the
-  RN1 cosmetic tag, state, character, party names).
+  country-name layer of API level 4, state, character, party names).
 * Permission triggers and the ``capie_v1_edit_rights`` game rule.
 * The CAPIE check window of the multiplayer handshake (``capie_v1_ed__capie__hello``).
 
@@ -636,6 +636,65 @@ def gen_text_tools() -> str:
     )
 
 
+def country_layer_set() -> list[str]:
+    """Return the body of ``capie_v1_set_country_name`` (slots 1 and 2 of ROOT -> name layer).
+
+    The codes are copied through temporary variables because the layer lives on the target
+    country and the slots on ROOT.
+
+    Returns:
+        Statements.
+    """
+    stage = [
+        set_temp("capie_cn_n_len", "capie_v1_txt1_len"),
+        set_temp("capie_cn_a_len", "capie_v1_txt2_len"),
+    ]
+    for slot, prefix in ((1, "capie_cn_n_"), (2, "capie_cn_a_")):
+        stage += [
+            if_block(
+                check(f"capie_v1_txt{slot}_len > {i}"),
+                [set_temp(f"{prefix}{i}", f"capie_v1_txt{slot}^{i}")],
+            )
+            for i in range(MAX_FIELD_LENGTH)
+        ]
+    write = ["clear_array = capie_cn_n", "clear_array = capie_cn_a"]
+    for array in ("capie_cn_n", "capie_cn_a"):
+        write += [
+            if_block(
+                check(f"temp_var:{array}_len > {i}"),
+                [f"add_to_array = {{ {array} = temp_var:{array}_{i} }}"],
+            )
+            for i in range(MAX_FIELD_LENGTH)
+        ]
+    write += ["set_variable = { capie_cn_ver = 1 }", "set_variable = { capie_cn_rev = 1 }"]
+    filled = " ".join(check(f"capie_v1_txt{slot}_len > 0") for slot in (1, 2))
+    return [
+        if_block(
+            f"{check('temp_var:capie_err = 0')} ROOT = {{ {filled} }}",
+            ["ROOT = {", *(f"\t{line}" for line in nest(stage)), "}", *write],
+        )
+    ]
+
+
+def country_layer_clear() -> list[str]:
+    """Return the body of ``capie_v1_clear_country_name``.
+
+    Returns:
+        Statements.
+    """
+    return [
+        if_block(
+            check("temp_var:capie_err = 0"),
+            [
+                "clear_array = capie_cn_n",
+                "clear_array = capie_cn_a",
+                "clear_variable = capie_cn_ver",
+                "set_variable = { capie_cn_rev = 1 }",
+            ],
+        )
+    ]
+
+
 def gen_setters() -> str:
     """Return the vanilla setters fed from text slots (``meta_effect``).
 
@@ -667,12 +726,14 @@ def gen_setters() -> str:
             "# rename, after the permission check. Slot 1 = name, slot 2 = second text.\n"
         ),
         (
-            "# Country name and adjective through the RN1 cosmetic tag; drawn by capie_core.dll\n"
-            "# (CONTRACT.md 11). Scope: the country.\n"
+            "# Country name and adjective as the country's name layer (CONTRACT.md 13,\n"
+            "# API level 4): arrays capie_cn_n / capie_cn_a, capie_cn_ver = 1, commit\n"
+            "# capie_cn_rev last. Drawn by capie_core.dll in front of the cosmetic tag;\n"
+            "# flag and colour stay. Scope: the country.\n"
         ),
-        block(
-            "capie_v1_set_country_name", meta('set_cosmetic_tag = "RN1|[N]|[J]|"', {"N": 1, "J": 2})
-        ),
+        block("capie_v1_set_country_name", country_layer_set()),
+        "# Removes the name layer; the country shows its cosmetic tag or base name again.\n",
+        block("capie_v1_clear_country_name", country_layer_clear()),
         "# State name. Scope: the state.\n",
         block("capie_v1_set_state_name", meta('set_state_name = "[N]"', {"N": 1})),
         "# Character name. Scope: the character.\n",

@@ -30,7 +30,7 @@ mydemo_close_motto = {
 	add_to_variable = { mydemo_motto_epoch = 1 }
 }
 
-# Country name and adjective: two fields into slots 1 and 2, then the RN1 cosmetic tag.
+# Country name and adjective: two fields into slots 1 and 2, then the country-name layer (API level 4).
 # The permission check runs in the effect: the game does not repeat visible/enabled triggers.
 mydemo_apply_name = {
 	set_temp_variable = { capie_open_epoch = mydemo_name_epoch }

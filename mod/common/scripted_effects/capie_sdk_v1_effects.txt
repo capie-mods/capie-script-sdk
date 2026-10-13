@@ -2427,16 +2427,543 @@ capie_v1_text_clear = {
 }
 # Setters. Text comes from ROOT's slots; call each in the scope of the object to
 # rename, after the permission check. Slot 1 = name, slot 2 = second text.
-# Country name and adjective through the RN1 cosmetic tag; drawn by capie_core.dll
-# (CONTRACT.md 11). Scope: the country.
+# Country name and adjective as the country's name layer (CONTRACT.md 13,
+# API level 4): arrays capie_cn_n / capie_cn_a, capie_cn_ver = 1, commit
+# capie_cn_rev last. Drawn by capie_core.dll in front of the cosmetic tag;
+# flag and colour stay. Scope: the country.
 capie_v1_set_country_name = {
 	if = {
 		limit = { check_variable = { temp_var:capie_err = 0 } ROOT = { check_variable = { capie_v1_txt1_len > 0 } check_variable = { capie_v1_txt2_len > 0 } } }
-		meta_effect = {
-			text = { set_cosmetic_tag = "RN1|[N]|[J]|" }
-			N = "[ROOT.CAPIE_V1_T1_0][ROOT.CAPIE_V1_T1_1][ROOT.CAPIE_V1_T1_2][ROOT.CAPIE_V1_T1_3][ROOT.CAPIE_V1_T1_4][ROOT.CAPIE_V1_T1_5][ROOT.CAPIE_V1_T1_6][ROOT.CAPIE_V1_T1_7][ROOT.CAPIE_V1_T1_8][ROOT.CAPIE_V1_T1_9][ROOT.CAPIE_V1_T1_10][ROOT.CAPIE_V1_T1_11][ROOT.CAPIE_V1_T1_12][ROOT.CAPIE_V1_T1_13][ROOT.CAPIE_V1_T1_14][ROOT.CAPIE_V1_T1_15][ROOT.CAPIE_V1_T1_16][ROOT.CAPIE_V1_T1_17][ROOT.CAPIE_V1_T1_18][ROOT.CAPIE_V1_T1_19][ROOT.CAPIE_V1_T1_20][ROOT.CAPIE_V1_T1_21][ROOT.CAPIE_V1_T1_22][ROOT.CAPIE_V1_T1_23][ROOT.CAPIE_V1_T1_24][ROOT.CAPIE_V1_T1_25][ROOT.CAPIE_V1_T1_26][ROOT.CAPIE_V1_T1_27][ROOT.CAPIE_V1_T1_28][ROOT.CAPIE_V1_T1_29][ROOT.CAPIE_V1_T1_30][ROOT.CAPIE_V1_T1_31]"
-			J = "[ROOT.CAPIE_V1_T2_0][ROOT.CAPIE_V1_T2_1][ROOT.CAPIE_V1_T2_2][ROOT.CAPIE_V1_T2_3][ROOT.CAPIE_V1_T2_4][ROOT.CAPIE_V1_T2_5][ROOT.CAPIE_V1_T2_6][ROOT.CAPIE_V1_T2_7][ROOT.CAPIE_V1_T2_8][ROOT.CAPIE_V1_T2_9][ROOT.CAPIE_V1_T2_10][ROOT.CAPIE_V1_T2_11][ROOT.CAPIE_V1_T2_12][ROOT.CAPIE_V1_T2_13][ROOT.CAPIE_V1_T2_14][ROOT.CAPIE_V1_T2_15][ROOT.CAPIE_V1_T2_16][ROOT.CAPIE_V1_T2_17][ROOT.CAPIE_V1_T2_18][ROOT.CAPIE_V1_T2_19][ROOT.CAPIE_V1_T2_20][ROOT.CAPIE_V1_T2_21][ROOT.CAPIE_V1_T2_22][ROOT.CAPIE_V1_T2_23][ROOT.CAPIE_V1_T2_24][ROOT.CAPIE_V1_T2_25][ROOT.CAPIE_V1_T2_26][ROOT.CAPIE_V1_T2_27][ROOT.CAPIE_V1_T2_28][ROOT.CAPIE_V1_T2_29][ROOT.CAPIE_V1_T2_30][ROOT.CAPIE_V1_T2_31]"
+		ROOT = {
+			set_temp_variable = { capie_cn_n_len = capie_v1_txt1_len }
+			set_temp_variable = { capie_cn_a_len = capie_v1_txt2_len }
+			if = {
+				limit = { check_variable = { capie_v1_txt1_len > 0 } }
+				set_temp_variable = { capie_cn_n_0 = capie_v1_txt1^0 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt1_len > 1 } }
+				set_temp_variable = { capie_cn_n_1 = capie_v1_txt1^1 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt1_len > 2 } }
+				set_temp_variable = { capie_cn_n_2 = capie_v1_txt1^2 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt1_len > 3 } }
+				set_temp_variable = { capie_cn_n_3 = capie_v1_txt1^3 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt1_len > 4 } }
+				set_temp_variable = { capie_cn_n_4 = capie_v1_txt1^4 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt1_len > 5 } }
+				set_temp_variable = { capie_cn_n_5 = capie_v1_txt1^5 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt1_len > 6 } }
+				set_temp_variable = { capie_cn_n_6 = capie_v1_txt1^6 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt1_len > 7 } }
+				set_temp_variable = { capie_cn_n_7 = capie_v1_txt1^7 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt1_len > 8 } }
+				set_temp_variable = { capie_cn_n_8 = capie_v1_txt1^8 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt1_len > 9 } }
+				set_temp_variable = { capie_cn_n_9 = capie_v1_txt1^9 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt1_len > 10 } }
+				set_temp_variable = { capie_cn_n_10 = capie_v1_txt1^10 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt1_len > 11 } }
+				set_temp_variable = { capie_cn_n_11 = capie_v1_txt1^11 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt1_len > 12 } }
+				set_temp_variable = { capie_cn_n_12 = capie_v1_txt1^12 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt1_len > 13 } }
+				set_temp_variable = { capie_cn_n_13 = capie_v1_txt1^13 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt1_len > 14 } }
+				set_temp_variable = { capie_cn_n_14 = capie_v1_txt1^14 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt1_len > 15 } }
+				set_temp_variable = { capie_cn_n_15 = capie_v1_txt1^15 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt1_len > 16 } }
+				set_temp_variable = { capie_cn_n_16 = capie_v1_txt1^16 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt1_len > 17 } }
+				set_temp_variable = { capie_cn_n_17 = capie_v1_txt1^17 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt1_len > 18 } }
+				set_temp_variable = { capie_cn_n_18 = capie_v1_txt1^18 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt1_len > 19 } }
+				set_temp_variable = { capie_cn_n_19 = capie_v1_txt1^19 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt1_len > 20 } }
+				set_temp_variable = { capie_cn_n_20 = capie_v1_txt1^20 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt1_len > 21 } }
+				set_temp_variable = { capie_cn_n_21 = capie_v1_txt1^21 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt1_len > 22 } }
+				set_temp_variable = { capie_cn_n_22 = capie_v1_txt1^22 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt1_len > 23 } }
+				set_temp_variable = { capie_cn_n_23 = capie_v1_txt1^23 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt1_len > 24 } }
+				set_temp_variable = { capie_cn_n_24 = capie_v1_txt1^24 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt1_len > 25 } }
+				set_temp_variable = { capie_cn_n_25 = capie_v1_txt1^25 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt1_len > 26 } }
+				set_temp_variable = { capie_cn_n_26 = capie_v1_txt1^26 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt1_len > 27 } }
+				set_temp_variable = { capie_cn_n_27 = capie_v1_txt1^27 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt1_len > 28 } }
+				set_temp_variable = { capie_cn_n_28 = capie_v1_txt1^28 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt1_len > 29 } }
+				set_temp_variable = { capie_cn_n_29 = capie_v1_txt1^29 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt1_len > 30 } }
+				set_temp_variable = { capie_cn_n_30 = capie_v1_txt1^30 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt1_len > 31 } }
+				set_temp_variable = { capie_cn_n_31 = capie_v1_txt1^31 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt2_len > 0 } }
+				set_temp_variable = { capie_cn_a_0 = capie_v1_txt2^0 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt2_len > 1 } }
+				set_temp_variable = { capie_cn_a_1 = capie_v1_txt2^1 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt2_len > 2 } }
+				set_temp_variable = { capie_cn_a_2 = capie_v1_txt2^2 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt2_len > 3 } }
+				set_temp_variable = { capie_cn_a_3 = capie_v1_txt2^3 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt2_len > 4 } }
+				set_temp_variable = { capie_cn_a_4 = capie_v1_txt2^4 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt2_len > 5 } }
+				set_temp_variable = { capie_cn_a_5 = capie_v1_txt2^5 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt2_len > 6 } }
+				set_temp_variable = { capie_cn_a_6 = capie_v1_txt2^6 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt2_len > 7 } }
+				set_temp_variable = { capie_cn_a_7 = capie_v1_txt2^7 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt2_len > 8 } }
+				set_temp_variable = { capie_cn_a_8 = capie_v1_txt2^8 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt2_len > 9 } }
+				set_temp_variable = { capie_cn_a_9 = capie_v1_txt2^9 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt2_len > 10 } }
+				set_temp_variable = { capie_cn_a_10 = capie_v1_txt2^10 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt2_len > 11 } }
+				set_temp_variable = { capie_cn_a_11 = capie_v1_txt2^11 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt2_len > 12 } }
+				set_temp_variable = { capie_cn_a_12 = capie_v1_txt2^12 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt2_len > 13 } }
+				set_temp_variable = { capie_cn_a_13 = capie_v1_txt2^13 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt2_len > 14 } }
+				set_temp_variable = { capie_cn_a_14 = capie_v1_txt2^14 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt2_len > 15 } }
+				set_temp_variable = { capie_cn_a_15 = capie_v1_txt2^15 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt2_len > 16 } }
+				set_temp_variable = { capie_cn_a_16 = capie_v1_txt2^16 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt2_len > 17 } }
+				set_temp_variable = { capie_cn_a_17 = capie_v1_txt2^17 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt2_len > 18 } }
+				set_temp_variable = { capie_cn_a_18 = capie_v1_txt2^18 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt2_len > 19 } }
+				set_temp_variable = { capie_cn_a_19 = capie_v1_txt2^19 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt2_len > 20 } }
+				set_temp_variable = { capie_cn_a_20 = capie_v1_txt2^20 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt2_len > 21 } }
+				set_temp_variable = { capie_cn_a_21 = capie_v1_txt2^21 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt2_len > 22 } }
+				set_temp_variable = { capie_cn_a_22 = capie_v1_txt2^22 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt2_len > 23 } }
+				set_temp_variable = { capie_cn_a_23 = capie_v1_txt2^23 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt2_len > 24 } }
+				set_temp_variable = { capie_cn_a_24 = capie_v1_txt2^24 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt2_len > 25 } }
+				set_temp_variable = { capie_cn_a_25 = capie_v1_txt2^25 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt2_len > 26 } }
+				set_temp_variable = { capie_cn_a_26 = capie_v1_txt2^26 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt2_len > 27 } }
+				set_temp_variable = { capie_cn_a_27 = capie_v1_txt2^27 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt2_len > 28 } }
+				set_temp_variable = { capie_cn_a_28 = capie_v1_txt2^28 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt2_len > 29 } }
+				set_temp_variable = { capie_cn_a_29 = capie_v1_txt2^29 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt2_len > 30 } }
+				set_temp_variable = { capie_cn_a_30 = capie_v1_txt2^30 }
+			}
+			if = {
+				limit = { check_variable = { capie_v1_txt2_len > 31 } }
+				set_temp_variable = { capie_cn_a_31 = capie_v1_txt2^31 }
+			}
 		}
+		clear_array = capie_cn_n
+		clear_array = capie_cn_a
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_n_len > 0 } }
+			add_to_array = { capie_cn_n = temp_var:capie_cn_n_0 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_n_len > 1 } }
+			add_to_array = { capie_cn_n = temp_var:capie_cn_n_1 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_n_len > 2 } }
+			add_to_array = { capie_cn_n = temp_var:capie_cn_n_2 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_n_len > 3 } }
+			add_to_array = { capie_cn_n = temp_var:capie_cn_n_3 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_n_len > 4 } }
+			add_to_array = { capie_cn_n = temp_var:capie_cn_n_4 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_n_len > 5 } }
+			add_to_array = { capie_cn_n = temp_var:capie_cn_n_5 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_n_len > 6 } }
+			add_to_array = { capie_cn_n = temp_var:capie_cn_n_6 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_n_len > 7 } }
+			add_to_array = { capie_cn_n = temp_var:capie_cn_n_7 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_n_len > 8 } }
+			add_to_array = { capie_cn_n = temp_var:capie_cn_n_8 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_n_len > 9 } }
+			add_to_array = { capie_cn_n = temp_var:capie_cn_n_9 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_n_len > 10 } }
+			add_to_array = { capie_cn_n = temp_var:capie_cn_n_10 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_n_len > 11 } }
+			add_to_array = { capie_cn_n = temp_var:capie_cn_n_11 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_n_len > 12 } }
+			add_to_array = { capie_cn_n = temp_var:capie_cn_n_12 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_n_len > 13 } }
+			add_to_array = { capie_cn_n = temp_var:capie_cn_n_13 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_n_len > 14 } }
+			add_to_array = { capie_cn_n = temp_var:capie_cn_n_14 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_n_len > 15 } }
+			add_to_array = { capie_cn_n = temp_var:capie_cn_n_15 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_n_len > 16 } }
+			add_to_array = { capie_cn_n = temp_var:capie_cn_n_16 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_n_len > 17 } }
+			add_to_array = { capie_cn_n = temp_var:capie_cn_n_17 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_n_len > 18 } }
+			add_to_array = { capie_cn_n = temp_var:capie_cn_n_18 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_n_len > 19 } }
+			add_to_array = { capie_cn_n = temp_var:capie_cn_n_19 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_n_len > 20 } }
+			add_to_array = { capie_cn_n = temp_var:capie_cn_n_20 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_n_len > 21 } }
+			add_to_array = { capie_cn_n = temp_var:capie_cn_n_21 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_n_len > 22 } }
+			add_to_array = { capie_cn_n = temp_var:capie_cn_n_22 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_n_len > 23 } }
+			add_to_array = { capie_cn_n = temp_var:capie_cn_n_23 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_n_len > 24 } }
+			add_to_array = { capie_cn_n = temp_var:capie_cn_n_24 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_n_len > 25 } }
+			add_to_array = { capie_cn_n = temp_var:capie_cn_n_25 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_n_len > 26 } }
+			add_to_array = { capie_cn_n = temp_var:capie_cn_n_26 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_n_len > 27 } }
+			add_to_array = { capie_cn_n = temp_var:capie_cn_n_27 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_n_len > 28 } }
+			add_to_array = { capie_cn_n = temp_var:capie_cn_n_28 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_n_len > 29 } }
+			add_to_array = { capie_cn_n = temp_var:capie_cn_n_29 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_n_len > 30 } }
+			add_to_array = { capie_cn_n = temp_var:capie_cn_n_30 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_n_len > 31 } }
+			add_to_array = { capie_cn_n = temp_var:capie_cn_n_31 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_a_len > 0 } }
+			add_to_array = { capie_cn_a = temp_var:capie_cn_a_0 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_a_len > 1 } }
+			add_to_array = { capie_cn_a = temp_var:capie_cn_a_1 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_a_len > 2 } }
+			add_to_array = { capie_cn_a = temp_var:capie_cn_a_2 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_a_len > 3 } }
+			add_to_array = { capie_cn_a = temp_var:capie_cn_a_3 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_a_len > 4 } }
+			add_to_array = { capie_cn_a = temp_var:capie_cn_a_4 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_a_len > 5 } }
+			add_to_array = { capie_cn_a = temp_var:capie_cn_a_5 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_a_len > 6 } }
+			add_to_array = { capie_cn_a = temp_var:capie_cn_a_6 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_a_len > 7 } }
+			add_to_array = { capie_cn_a = temp_var:capie_cn_a_7 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_a_len > 8 } }
+			add_to_array = { capie_cn_a = temp_var:capie_cn_a_8 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_a_len > 9 } }
+			add_to_array = { capie_cn_a = temp_var:capie_cn_a_9 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_a_len > 10 } }
+			add_to_array = { capie_cn_a = temp_var:capie_cn_a_10 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_a_len > 11 } }
+			add_to_array = { capie_cn_a = temp_var:capie_cn_a_11 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_a_len > 12 } }
+			add_to_array = { capie_cn_a = temp_var:capie_cn_a_12 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_a_len > 13 } }
+			add_to_array = { capie_cn_a = temp_var:capie_cn_a_13 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_a_len > 14 } }
+			add_to_array = { capie_cn_a = temp_var:capie_cn_a_14 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_a_len > 15 } }
+			add_to_array = { capie_cn_a = temp_var:capie_cn_a_15 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_a_len > 16 } }
+			add_to_array = { capie_cn_a = temp_var:capie_cn_a_16 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_a_len > 17 } }
+			add_to_array = { capie_cn_a = temp_var:capie_cn_a_17 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_a_len > 18 } }
+			add_to_array = { capie_cn_a = temp_var:capie_cn_a_18 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_a_len > 19 } }
+			add_to_array = { capie_cn_a = temp_var:capie_cn_a_19 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_a_len > 20 } }
+			add_to_array = { capie_cn_a = temp_var:capie_cn_a_20 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_a_len > 21 } }
+			add_to_array = { capie_cn_a = temp_var:capie_cn_a_21 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_a_len > 22 } }
+			add_to_array = { capie_cn_a = temp_var:capie_cn_a_22 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_a_len > 23 } }
+			add_to_array = { capie_cn_a = temp_var:capie_cn_a_23 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_a_len > 24 } }
+			add_to_array = { capie_cn_a = temp_var:capie_cn_a_24 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_a_len > 25 } }
+			add_to_array = { capie_cn_a = temp_var:capie_cn_a_25 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_a_len > 26 } }
+			add_to_array = { capie_cn_a = temp_var:capie_cn_a_26 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_a_len > 27 } }
+			add_to_array = { capie_cn_a = temp_var:capie_cn_a_27 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_a_len > 28 } }
+			add_to_array = { capie_cn_a = temp_var:capie_cn_a_28 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_a_len > 29 } }
+			add_to_array = { capie_cn_a = temp_var:capie_cn_a_29 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_a_len > 30 } }
+			add_to_array = { capie_cn_a = temp_var:capie_cn_a_30 }
+		}
+		if = {
+			limit = { check_variable = { temp_var:capie_cn_a_len > 31 } }
+			add_to_array = { capie_cn_a = temp_var:capie_cn_a_31 }
+		}
+		set_variable = { capie_cn_ver = 1 }
+		set_variable = { capie_cn_rev = 1 }
+	}
+}
+# Removes the name layer; the country shows its cosmetic tag or base name again.
+capie_v1_clear_country_name = {
+	if = {
+		limit = { check_variable = { temp_var:capie_err = 0 } }
+		clear_array = capie_cn_n
+		clear_array = capie_cn_a
+		clear_variable = capie_cn_ver
+		set_variable = { capie_cn_rev = 1 }
 	}
 }
 # State name. Scope: the state.
