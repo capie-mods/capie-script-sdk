@@ -1,6 +1,5 @@
 capie_v1_edit_rights = {
 	name = "CAPIE_V1_RULE_EDIT_RIGHTS"
-	desc = "CAPIE_V1_RULE_EDIT_RIGHTS_DESC"
 	group = "RULE_GROUP_GAMEPLAY"
 	default = {
 		name = "CAPIE_V1_OWN"

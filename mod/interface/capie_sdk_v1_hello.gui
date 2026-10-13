@@ -4,7 +4,7 @@ guiTypes = {
 	containerWindowType = {
 		name = "capie_v1_ed__capie__hello"
 		position = { x = -230 y = 96 }
-		orientation = upper_center
+		orientation = center_up
 		size = { width = 460 height = 58 }
 		clipping = no
 		background = { name = "Background" quadTextureSprite = "GFX_tiled_window_2b_border" }

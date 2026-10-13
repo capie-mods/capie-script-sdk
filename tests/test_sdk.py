@@ -9,6 +9,7 @@ editor grammar of ``plugin/capie/CONTRACT.md``. None of this replaces an in-game
 
 from __future__ import annotations
 
+import os
 import re
 import sys
 from pathlib import Path
@@ -253,3 +254,169 @@ def test_demo_checks_permission_in_the_effect() -> None:
         assert body.index("capie_v1_begin = yes") < body.index("capie_v1_field_load = yes")
         assert "capie_v1_actor_ok = yes" in body
         assert "capie_open_epoch" in body
+
+
+# ---- Checks against the game's own files (PID45148: two parser errors in error.log) ----------
+
+GAME = Path(
+    os.environ.get("HOI4_DIR", r"C:\Program Files (x86)\Steam\steamapps\common\Hearts of Iron IV")
+)
+"""HOI4 installation (read only); the tests below are skipped when it is missing."""
+
+TOKEN = re.compile(r'"[^"\n]*"|[{}=]|[^\s{}=#"]+')
+"""One token of Paradox script after comments are removed."""
+
+Block = list[tuple[str, "str | Block"]]
+"""Parsed script: (key, value or nested block) in file order."""
+
+
+def parse_blocks(text: str) -> Block:
+    """Parse Paradox script into nested ``key = value`` / ``key = { ... }`` pairs.
+
+    Args:
+        text: Script text.
+
+    Returns:
+        The top-level pairs; bare list items inside braces are ignored.
+    """
+    tokens = TOKEN.findall(re.sub(r"#[^\n]*", "", text))
+    root: Block = []
+    stack: list[Block] = [root]
+    i = 0
+    while i < len(tokens):
+        item = tokens[i]
+        if item == "}":
+            if len(stack) > 1:
+                stack.pop()
+            i += 1
+        elif i + 2 < len(tokens) + 1 and i + 1 < len(tokens) and tokens[i + 1] == "=":
+            value = tokens[i + 2] if i + 2 < len(tokens) else ""
+            if value == "{":
+                child: Block = []
+                stack[-1].append((item, child))
+                stack.append(child)
+            else:
+                stack[-1].append((item, value.strip('"')))
+            i += 3
+        else:
+            i += 1
+    return root
+
+
+def vanilla_files(pattern: str) -> list[Path]:
+    """Return vanilla files matching a pattern, or skip the test without a game folder.
+
+    Args:
+        pattern: Glob relative to the game folder.
+
+    Returns:
+        Files.
+    """
+    files = sorted(GAME.glob(pattern))
+    if not files:
+        pytest.skip(f"HOI4 not found at {GAME} (set HOI4_DIR)")
+    return files
+
+
+def values_of(block: Block, key: str) -> set[str]:
+    """Collect every value of a key anywhere in a parsed block.
+
+    Args:
+        block: Parsed script.
+        key: Key, compared case-insensitively.
+
+    Returns:
+        The values, lower case.
+    """
+    found: set[str] = set()
+    for name, value in block:
+        if isinstance(value, list):
+            found |= values_of(value, key)
+        elif name.lower() == key:
+            found.add(value.lower())
+    return found
+
+
+def keys_of(block: Block) -> set[str]:
+    """Collect every key anywhere in a parsed block.
+
+    Args:
+        block: Parsed script.
+
+    Returns:
+        The keys, lower case.
+    """
+    found: set[str] = set()
+    for name, value in block:
+        found.add(name.lower())
+        if isinstance(value, list):
+            found |= keys_of(value)
+    return found
+
+
+def our_guis() -> list[Path]:
+    """Return the SDK's and the demo's interface files.
+
+    Returns:
+        ``.gui`` files.
+    """
+    return sorted([*MOD.rglob("*.gui"), *DEMO.rglob("*.gui")])
+
+
+def test_gui_orientations_are_vanilla() -> None:
+    """Every ``orientation`` value is one the game's own interface files use."""
+    vanilla: set[str] = set()
+    for path in vanilla_files("interface/**/*.gui"):
+        vanilla |= values_of(
+            parse_blocks(path.read_text(encoding="utf-8", errors="replace")), "orientation"
+        )
+    for path in our_guis():
+        for value in values_of(parse_blocks(path.read_text(encoding="utf-8")), "orientation"):
+            assert value in vanilla, f"{path.name}: orientation {value} is not used by the game"
+
+
+def test_gui_keys_are_vanilla() -> None:
+    """Every key in our ``.gui`` files also appears in the game's interface files."""
+    vanilla: set[str] = set()
+    for path in vanilla_files("interface/**/*.gui"):
+        vanilla |= keys_of(parse_blocks(path.read_text(encoding="utf-8", errors="replace")))
+    for path in our_guis():
+        unknown = keys_of(parse_blocks(path.read_text(encoding="utf-8"))) - vanilla
+        assert not unknown, f"{path.name}: {sorted(unknown)}"
+
+
+def vanilla_rule_shape() -> tuple[set[str], set[str], set[str]]:
+    """Collect what vanilla game rules use.
+
+    Returns:
+        Rule-level keys, option-level keys and ``group`` values.
+    """
+    rule_keys: set[str] = set()
+    option_keys: set[str] = set()
+    groups: set[str] = set()
+    for path in vanilla_files("common/game_rules/*.txt"):
+        for _, rule in parse_blocks(path.read_text(encoding="utf-8-sig", errors="replace")):
+            if not isinstance(rule, list):
+                continue
+            rule_keys |= {key for key, _ in rule}
+            groups |= {value for key, value in rule if key == "group" and isinstance(value, str)}
+            for key, value in rule:
+                if key in {"option", "default"} and isinstance(value, list):
+                    option_keys |= {name for name, _ in value}
+    return rule_keys, option_keys, groups
+
+
+def test_game_rules_match_vanilla() -> None:
+    """Rule-level and option-level keys of the SDK rule are those vanilla rules use."""
+    rule_keys, option_keys, groups = vanilla_rule_shape()
+    ours = parse_blocks(
+        (MOD / "common" / "game_rules" / "capie_sdk_v1_rules.txt").read_text(encoding="utf-8")
+    )
+    for _, rule in ours:
+        assert isinstance(rule, list)
+        for key, value in rule:
+            assert key in rule_keys, f"rule-level key {key} is not used by vanilla rules"
+            if key == "group":
+                assert value in groups, value
+            if isinstance(value, list):
+                assert {name for name, _ in value} <= option_keys, key

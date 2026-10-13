@@ -110,10 +110,6 @@ pl = "Informuje innych graczy, jaką wersję CAPIE ma twoja gra. Każdy gracz na
 en = "CAPIE: who may rename what"
 pl = "CAPIE: kto może zmieniać nazwy"
 
-[ui.CAPIE_V1_RULE_EDIT_RIGHTS_DESC]
-en = "Applies to every mod built on the CAPIE script SDK."
-pl = "Dotyczy każdego moda zbudowanego na skryptowym SDK CAPIE."
-
 [ui.CAPIE_V1_RULE_OWN]
 en = "Own country and subjects"
 pl = "Własny kraj i podmioty"

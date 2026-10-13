@@ -9,7 +9,6 @@
  CAPIE_V1_HELLO_BUTTON:0 "CAPIE check"
  CAPIE_V1_HELLO_TT:0 "Tells the other players which CAPIE build your game runs. Every player presses it once per session."
  CAPIE_V1_RULE_EDIT_RIGHTS:0 "CAPIE: who may rename what"
- CAPIE_V1_RULE_EDIT_RIGHTS_DESC:0 "Applies to every mod built on the CAPIE script SDK."
  CAPIE_V1_RULE_OWN:0 "Own country and subjects"
  CAPIE_V1_RULE_OWN_DESC:0 "A player renames their own country and its subjects."
  CAPIE_V1_RULE_OPEN:0 "Any country"

@@ -1,0 +1,60 @@
+# CAPIE console demo (API level 3 candidate, plugin/capie/CONTRACT-console.md).
+#
+# Commands, typed in the in-game console of a single-player, non-ironman campaign with the
+# CAPIE console developer build:
+#
+#   capie_cmd condemo echo "Hello world" "Żółw"
+#       Logs the scopes and the two arguments' lengths to game.log. Use it to check which
+#       country is ROOT, THIS and FROM (the in-game test of open item O5).
+#   capie_cmd condemo mark
+#       Sets the country flag condemo_marked on THIS (the player's country). Check it with
+#       the vanilla console command list_flags.
+#
+# Without CAPIE the game answers "Unknown command"; these effects are never called.
+#
+# Rules for console effects (CONTRACT-console.md):
+# - THIS is the player's country: CAPIE runs the effect inside FROM = { ... }, and FROM of
+#   eval_effect is the player. ROOT is the object selected in the game, or none: never use
+#   ROOT, and do not call SDK effects or triggers that read ROOT (capie_v1_begin,
+#   capie_v1_actor_ok, capie_v1_may_edit_country, the capie_v1_text_* slot effects).
+# - Check capie_src = 2 and capie_cap >= 3 first; a script can also call this effect
+#   directly, without CAPIE.
+# - Arguments arrive as the editor fields do: capie_nf, capie_f<n>_len, capie_f<n>_0..31.
+#   capie_v1_field_load works on them.
+
+condemo_console_ok = {
+	set_temp_variable = { condemo_ok = 0 }
+	if = {
+		limit = {
+			check_variable = { temp_var:capie_src = 2 }
+			check_variable = { temp_var:capie_cap > 2 }
+		}
+		set_temp_variable = { condemo_ok = 1 }
+	}
+}
+
+capie_v1_cmd__condemo__echo = {
+	condemo_console_ok = yes
+	if = {
+		limit = { check_variable = { temp_var:condemo_ok = 1 } }
+		log = "condemo echo: ROOT=[ROOT.GetTag] THIS=[THIS.GetTag] FROM=[FROM.GetTag] args=[?capie_nf] len1=[?capie_f1_len] len2=[?capie_f2_len]"
+		set_temp_variable = { capie_field = 1 }
+		capie_v1_field_load = yes
+		log = "condemo echo: field 1 loaded, first code=[?capie_c0] length=[?capie_len]"
+	}
+	else = {
+		log = "condemo echo: called without CAPIE console records; nothing done"
+	}
+}
+
+capie_v1_cmd__condemo__mark = {
+	condemo_console_ok = yes
+	if = {
+		limit = {
+			check_variable = { temp_var:condemo_ok = 1 }
+			is_ai = no
+		}
+		set_country_flag = condemo_marked
+		log = "condemo mark: flag set on THIS=[THIS.GetTag] (ROOT=[ROOT.GetTag])"
+	}
+}

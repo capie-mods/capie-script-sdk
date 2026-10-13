@@ -9,7 +9,6 @@
  CAPIE_V1_HELLO_BUTTON:0 "Sprawdź CAPIE"
  CAPIE_V1_HELLO_TT:0 "Informuje innych graczy, jaką wersję CAPIE ma twoja gra. Każdy gracz naciska go raz na sesję."
  CAPIE_V1_RULE_EDIT_RIGHTS:0 "CAPIE: kto może zmieniać nazwy"
- CAPIE_V1_RULE_EDIT_RIGHTS_DESC:0 "Dotyczy każdego moda zbudowanego na skryptowym SDK CAPIE."
  CAPIE_V1_RULE_OWN:0 "Własny kraj i podmioty"
  CAPIE_V1_RULE_OWN_DESC:0 "Gracz zmienia nazwy swojego kraju i jego podmiotów."
  CAPIE_V1_RULE_OPEN:0 "Dowolny kraj"
