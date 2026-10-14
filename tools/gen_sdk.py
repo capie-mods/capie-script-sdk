@@ -726,7 +726,7 @@ def gen_setters() -> str:
             "# rename, after the permission check. Slot 1 = name, slot 2 = second text.\n"
         ),
         (
-            "# Country name and adjective as the country's name layer (CONTRACT.md 13,\n"
+            "# Country name and adjective as the country's name layer (CONTRACT.md 14,\n"
             "# API level 4): arrays capie_cn_n / capie_cn_a, capie_cn_ver = 1, commit\n"
             "# capie_cn_rev last. Drawn by capie_core.dll in front of the cosmetic tag;\n"
             "# flag and colour stay. Scope: the country.\n"

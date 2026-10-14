@@ -2427,7 +2427,7 @@ capie_v1_text_clear = {
 }
 # Setters. Text comes from ROOT's slots; call each in the scope of the object to
 # rename, after the permission check. Slot 1 = name, slot 2 = second text.
-# Country name and adjective as the country's name layer (CONTRACT.md 13,
+# Country name and adjective as the country's name layer (CONTRACT.md 14,
 # API level 4): arrays capie_cn_n / capie_cn_a, capie_cn_ver = 1, commit
 # capie_cn_rev last. Drawn by capie_core.dll in front of the cosmetic tag;
 # flag and colour stay. Scope: the country.

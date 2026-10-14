@@ -35,6 +35,6 @@ explains why, and the steps of the move.
    Keep CAPIE answering `RN_PLUGIN_STATUS*` for one more release so older mod versions still
    show the right text.
 6. Keep reading the `RN1|` cosmetic-tag protocol (CAPIE 1.0/1.1 saves contain it); new names are
-   written only as the country-name layer of API level 4 (CONTRACT.md section 13).
+   written only as the country-name layer of API level 4 (CONTRACT.md section 14).
 7. Re-record the mutants of the legacy editor path against the grammar path; run the in-game
    checklist of the twentieth run on the new names.
