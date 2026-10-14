@@ -4,8 +4,9 @@ Plain HOI4 script that lets a mod use CAPIE text fields without native code. It 
 ship as its own Steam Workshop item ("CAPIE Script SDK") that mods list as a dependency, and to
 move into its own repository, `capie-script-sdk`.
 
-The contract it implements is `plugin/capie/CONTRACT.md` (API level 2, CAPIE 1.1). The
-modder documentation is in `sites/capie/docs/modders/`.
+The contract it implements is `plugin/capie/CONTRACT.md`: the editor contract of API level 2
+(CAPIE 1.1) and the country name layer of API level 4 (CAPIE 1.2). The modder documentation is
+in `sites/capie/docs/modders/`.
 
 ## Layout
 
@@ -48,5 +49,9 @@ uv run pytest sdk/capie-script-sdk/tests
 
 ## Status
 
-Generated and checked offline only. None of it has been parsed by the game yet; the list of
-in-game checks is in `CONTRACT.md` section 13.
+Generated and checked offline, and run in the game once on CAPIE 1.1 with the demo mod: the
+demo editors work after a fix, and the two parser errors the game reported in the SDK were
+removed. Not yet checked in the game: the SDK on CAPIE 1.2 (its country name setter now writes
+the name layer), the extended alphabet, the lobby rule and the multiplayer handshake. The full
+list is in `CONTRACT.md` section 13 and in the
+[in-game test record](../../docs/contributing/in-game-test-record.md).
