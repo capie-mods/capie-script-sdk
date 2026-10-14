@@ -2,19 +2,19 @@
 
 CAPIE 1.1 keeps Rename Anything on its private names (`rn_ip_*` models, `rn_native(b)_*`
 records, `rn_ip_cmd_epoch`, `rn_native_cap`, `RN_PLUGIN_STATUS*`, 84-code alphabet). This file
-explains why, and the steps of the move.
+explains why, and lists the steps of the move.
 
 ## Why not in 1.1
 
-- Rename Anything's editors use behaviour that the public contract does not offer: the
+- Rename Anything's editors rely on three things the public contract does not offer: the
   caption refresh of the politics panel after Apply, gated by revision counters; the check
-  that `capie_core.dll` is active before a country Apply; focus release when the politics panel
-  hides. Moving them means either adding those features to the grammar or dropping them.
-- The 1.0 behaviour is accepted in the game (TWENTIETH run, PID50556 and PID25584) and pinned
-  by the offline suites and 79 mutants. A move changes the generated mod, the bridge's model
-  table and those tests at once, and needs a new in-game run.
-- The legacy path costs nothing at run time: grammar names and legacy names are recognised by
-  different observers, and a legacy frame never gets `capie_*` records.
+  that `capie_core.dll` is active before a country Apply; and focus release when the politics
+  panel hides. Moving the editors means adding those features to the grammar or dropping them.
+- The 1.0 behaviour was accepted in the game (TWENTIETH run, PID50556 and PID25584), and the
+  offline suites and 79 mutants pin it. A move changes the generated mod, the bridge's model
+  table and those tests at once, so it needs a new in-game run.
+- Keeping the legacy path costs nothing at run time. Different observers recognise grammar names
+  and legacy names, and a legacy frame never gets `capie_*` records.
 
 ## Steps (next release that is tested in the game)
 

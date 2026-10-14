@@ -23,21 +23,23 @@ in `sites/capie/docs/modders/`.
 
 ## What is in `mod/`
 
-- `capie_v1_begin`: reads the header CAPIE adds to an Apply, notes CAPIE presence for the
-  multiplayer handshake and sets `capie_err`.
-- `capie_v1_field_load`, `capie_v1_text_trim`, `capie_v1_text_validate`: one field into a work
-  buffer, trimmed and checked.
-- `capie_v1_text_store` / `_load` / `_equals_slot` / `_clear`: four text slots per country,
-  drawn by the localisation keys `CAPIE_V1_TXT1` to `CAPIE_V1_TXT4`.
-- Setters: country name and adjective as the country-name layer of API level 4 (country variables;
-  flag and colour stay; `capie_v1_clear_country_name` removes it), and through `meta_effect` state,
-  character and party names.
-- `capie_v1_actor_ok`, `capie_v1_may_edit_country` and the lobby rule `capie_v1_edit_rights`.
-- The CAPIE check window of the multiplayer handshake.
-- `CAPIE_STATUS`, `CAPIE_API`, `CAPIE_BUILD` fallbacks and every message, in all ten game
-  languages (Polish translated, the others in English).
+- `capie_v1_begin` reads the header CAPIE adds to an Apply, notes that CAPIE is present (for the
+  multiplayer handshake) and sets `capie_err`.
+- `capie_v1_field_load`, `capie_v1_text_trim` and `capie_v1_text_validate` copy one field into a
+  work buffer, trim it and check it.
+- `capie_v1_text_store` / `_load` / `_equals_slot` / `_clear` manage four text slots per country.
+  The localisation keys `CAPIE_V1_TXT1` to `CAPIE_V1_TXT4` draw them on screen.
+- The setters write a country's name and adjective as the country name layer of API level 4.
+  That layer lives in country variables, so the flag and colour stay as they are, and
+  `capie_v1_clear_country_name` removes it. State, character and party names go through
+  `meta_effect`.
+- `capie_v1_actor_ok`, `capie_v1_may_edit_country` and the lobby rule `capie_v1_edit_rights`
+  decide who may edit.
+- The CAPIE check window belongs to the multiplayer handshake.
+- Fallbacks for `CAPIE_STATUS`, `CAPIE_API` and `CAPIE_BUILD`, and every message, exist in all ten
+  game languages. Polish is translated; the other languages use the English text.
 
-Everything works without CAPIE: Apply effects then end with `capie_err = 10` and change nothing.
+Without CAPIE nothing breaks: Apply effects end with `capie_err = 10` and change nothing.
 
 ## Regenerate and check
 
@@ -49,9 +51,9 @@ uv run pytest sdk/capie-script-sdk/tests
 
 ## Status
 
-Generated and checked offline, and run in the game once on CAPIE 1.1 with the demo mod: the
-demo editors work after a fix, and the two parser errors the game reported in the SDK were
-removed. Not yet checked in the game: the SDK on CAPIE 1.2 (its country name setter now writes
+The SDK is generated and checked offline. It ran in the game once, on CAPIE 1.1 with the demo
+mod: the demo editors worked after a fix, and we removed the two parser errors the game reported
+in the SDK. Still unchecked in the game: the SDK on CAPIE 1.2 (its country name setter now writes
 the name layer), the extended alphabet, the lobby rule and the multiplayer handshake. The full
 list is in `CONTRACT.md` section 13 and in the
 [in-game test record](../../docs/contributing/in-game-test-record.md).
