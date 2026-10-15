@@ -56,4 +56,4 @@ mod: the demo editors worked after a fix, and we removed the two parser errors t
 in the SDK. Still unchecked in the game: the SDK on CAPIE 1.2 (its country name setter now writes
 the name layer), the extended alphabet, the lobby rule and the multiplayer handshake. The full
 list is in `CONTRACT.md` section 13 and in the
-[in-game test record](../../docs/contributing/in-game-test-record.md).
+[in-game test record](https://github.com/capie-mods/capie/blob/main/docs/contributing/in-game-test-record.md).
