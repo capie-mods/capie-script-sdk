@@ -8,6 +8,8 @@ The contract it implements is `plugin/capie/CONTRACT.md`: the editor contract of
 (CAPIE 1.1) and the country name layer of API level 4 (CAPIE 1.2). The modder documentation is
 in `sites/capie/docs/modders/`.
 
+Websites: [Rename Anything](https://capie-mods.github.io/rename-anything/) and [CAPIE](https://capie-mods.github.io/capie/).
+
 ## Layout
 
 | Path | What it is |
